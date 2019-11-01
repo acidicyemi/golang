@@ -17,5 +17,15 @@ func main() {
         fmt.Fprintf(w, "You've requested the book: %s on page %s\n", title, page)
     })
 
-    http.ListenAndServe(":8000", r)
+	
+
+	r.HandleFunc("/test/{id}", func (w http.ResponseWriter, r *http.Request)  {
+		params:= mux.Vars(r) 
+
+		id := params["id"]
+
+		fmt.Fprintf(w, "the id is %s", id)
+
+	})
+	http.ListenAndServe(":8000", r)
 }
