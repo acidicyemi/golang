@@ -7,6 +7,7 @@ import (
 func main() {
 	area, perimeter := rect(2.3,3.0)
 	fmt.Println(area, perimeter )
+	fmt.Printf("area %t and parameter %t", int(area), float32(perimeter))
 
 }
 
