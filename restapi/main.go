@@ -1,8 +1,8 @@
 package main
 
 import (
-	"encoding/xml"
-	// "encoding/json"
+	// "encoding/xml"
+	"encoding/json"
 	"html/template"
 	"net/http"
 
@@ -11,9 +11,12 @@ import (
 
 // Article struct
 type Article struct {
-	Title   string `xml:"title"`
-	Desc    string `xml:"desc"`
-	Content string `xml:"content"`
+	Title   string `json:"title"`
+	Desc    string `json:"desc"`
+	Content string `json:"content"`
+	// Title   string `xml:"title"`
+	// Desc    string `xml:"desc"`
+	// Content string `xml:"content"`
 }
 
 // Articles array
@@ -26,7 +29,8 @@ func allArticle(w http.ResponseWriter, r *http.Request) {
 		Article{Title: "third title", Desc: "article 3 description", Content: "lorem ipsum dolar"},
 	}
 
-	xml.NewEncoder(w).Encode(articles)
+	json.NewEncoder(w).Encode(articles)
+	// xml.NewEncoder(w).Encode(articles)
 
 }
 
