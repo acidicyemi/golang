@@ -1,10 +1,18 @@
 package main
 
 import (
+	// "encoding/json"
 	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
 )
+ 
+type Article struct{
+	Title string `json"title"`
+	Desc string `json"desc"`
+	Content string `json"content"`
+}
+
 
 func homePage(w http.ResponseWriter, r *http.Request)  {
 	tmplt := template.Must(template.ParseFiles("home.html"))
@@ -18,7 +26,7 @@ func aboutPage(w http.ResponseWriter, r *http.Request)  {
 	tmplt.Execute(w, "data")
 }
 func handleRequest()  {
-	
+
 	r := mux.NewRouter()
 	r.HandleFunc("/home", homePage)
 	r.HandleFunc("/about", aboutPage)
