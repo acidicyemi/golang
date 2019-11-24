@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"net/http"
 	"log"
 	"github.com/gorilla/mux"
@@ -10,15 +11,17 @@ import (
 func handleRequest()  {
 	r := mux.NewRouter().StrictSlash(true)
 
-	r.HandleFunc("/users", allUser).Methods("GET")
+	r.HandleFunc("/", Homepage).Methods("GET")
+	r.HandleFunc("/users", AllUser).Methods("GET")
+	r.HandleFunc("/newuser/{name}/{email}", NewUser).Methods("Post")
+	r.HandleFunc("/user/{name}", DeleteUser).Methods("DELETE")
+	r.HandleFunc("/user/{name}", UpdateUser).Methods("PUT")
 
 	log.Fatal(http.ListenAndServe(":8081", r))
 }
 
-func allUser(w http.ResponseWriter, r *http.Request)  {
-	fmt.Fprintf(w, "all user endpoint")
-}
-
 func main() {
+	numberOfCpu := runtime.NumCPU()
+	fmt.Println( numberOfCpu)
 	handleRequest()
 }
