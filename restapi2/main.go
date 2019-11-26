@@ -21,6 +21,7 @@ func handleRequest()  {
 }
 
 func main() {
+	
 	numberOfCpu := runtime.NumCPU()
 	fmt.Println( numberOfCpu)
 	handleRequest()
