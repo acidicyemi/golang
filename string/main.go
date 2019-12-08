@@ -16,7 +16,8 @@ func main() {
 
 	word := os.Args[1]
 	l := utf8.RuneCountInString(word)
-	output := word + strings.Repeat("!", l )
+	repeat := strings.Repeat("!", l )
+	output := repeat+ word + repeat
 	output = strings.ToUpper(output)
 	fmt.Println(output)
 }
